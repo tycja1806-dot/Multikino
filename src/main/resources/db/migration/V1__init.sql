@@ -2,7 +2,7 @@ CREATE TABLE rooms
 (
     number   INT    NOT NULL PRIMARY KEY,
     capacity INT    NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (number)
 );
 CREATE TABLE workers
 (
@@ -10,13 +10,13 @@ CREATE TABLE workers
     name VARCHAR(20) NOT NULL,
     role VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
-)
+);
 CREATE TABLE films
 (
     id    BIGINT  NOT NULL AUTO_INCREMENT,
     title VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
-)
+);
 CREATE TABLE timetable
 (
     id        BIGINT   NOT NULL AUTO_INCREMENT,
@@ -25,5 +25,5 @@ CREATE TABLE timetable
     room_id   BIGINT   NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (film_id) REFERENCES films (id),
-    FOREIGN KEY (room_id) REFERENCES rooms (id)
+    FOREIGN KEY (room_id) REFERENCES rooms (number)
 )
