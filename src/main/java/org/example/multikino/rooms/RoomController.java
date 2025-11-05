@@ -20,9 +20,17 @@ public class RoomController {
     return roomService.findAllRooms();
   }
 
+  @GetMapping("/{number}")
+  @ResponseStatus(HttpStatus.OK)
+  public RoomResponse getRoomByNumber(@PathVariable int number){
+   return roomService.findRoomById(number);
+  }
+
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public RoomResponse addRoom(@RequestBody RoomRequest roomRequest) {
     return roomService.addRoom(roomRequest);
   }
+
+
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Service
 public class WorkerService {
-  private WorkerRepository workerRepository;
+  private final WorkerRepository workerRepository;
   private final Set<String> allRoles = Set.of("kasjer", "ochroniarz", "kierownik");
   public List<WorkerResponse> findAllWorkers() {
     return workerRepository.findAll().stream().map(this::mapToWorkerResponse).toList();
