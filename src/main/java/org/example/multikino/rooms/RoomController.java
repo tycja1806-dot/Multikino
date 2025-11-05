@@ -1,0 +1,28 @@
+package org.example.multikino.rooms;
+
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/rooms")
+
+public class RoomController {
+  private final RoomService roomService;
+
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<RoomResponse> getAllRooms (){
+    return roomService.findAllRooms();
+  }
+
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public RoomResponse addRoom(@RequestBody RoomRequest roomRequest) {
+    return roomService.addRoom(roomRequest);
+  }
+}
