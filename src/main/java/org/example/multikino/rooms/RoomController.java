@@ -1,6 +1,7 @@
 package org.example.multikino.rooms;
 
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class RoomController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public RoomResponse addRoom(@RequestBody RoomRequest roomRequest) {
+  public RoomResponse addRoom(@RequestBody @Valid RoomRequest roomRequest) {
     return roomService.addRoom(roomRequest);
   }
 
