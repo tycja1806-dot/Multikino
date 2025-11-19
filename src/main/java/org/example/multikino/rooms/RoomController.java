@@ -17,14 +17,14 @@ public class RoomController {
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public List<RoomResponse> getAllRooms (){
+  public List<RoomResponse> getAllRooms() {
     return roomService.findAllRooms();
   }
 
   @GetMapping("/{number}")
   @ResponseStatus(HttpStatus.OK)
-  public RoomResponse getRoomByNumber(@PathVariable int number){
-   return roomService.findRoomById(number);
+  public RoomResponse getRoomByNumber(@PathVariable int number) {
+    return roomService.findRoomById(number);
   }
 
   @PostMapping

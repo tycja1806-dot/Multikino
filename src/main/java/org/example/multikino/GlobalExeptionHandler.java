@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @ControllerAdvice
 @RequiredArgsConstructor
@@ -31,6 +29,7 @@ public class GlobalExeptionHandler {
   public ExceptionResponse handleChangeBookException(EntityNotFoundException ex) {
     return new ExceptionResponse(ex.getMessage());
   }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseBody
   @ResponseStatus(HttpStatus.BAD_REQUEST)

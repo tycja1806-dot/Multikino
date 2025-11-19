@@ -8,15 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-  @Entity
-  @Data
-  @NoArgsConstructor
-  @Table(name = "films")
-  public class Film {
-    @Id
-    private Long ID;
-    @Column(nullable = false)
-    private String title;
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name = "films")
+public class Film {
+  @Id
+  private Long ID;
+  @Column(nullable = false)
+  private String title;
 
-  }
+}
 

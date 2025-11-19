@@ -31,7 +31,7 @@ public class FilmService {
   }
 
   public void deleteFilmById(Long id) {
-    if  (!filmRepository.existsById(id)) {
+    if (!filmRepository.existsById(id)) {
       throw new IllegalArgumentException("Film nie istnieje");
     }
     filmRepository.deleteById(id);

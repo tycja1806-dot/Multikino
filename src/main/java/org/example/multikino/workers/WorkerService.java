@@ -13,6 +13,23 @@ import java.util.Set;
 public class WorkerService {
   private final WorkerRepository workerRepository;
   private final Set<String> allRoles = Set.of("kasjer", "ochroniarz", "kierownik");
+
+  private static void validateName(String name) {
+    boolean bSpace = false;
+    for (char c : name.toCharArray()) {
+      if (c == ' ') {
+        if (bSpace) {
+          throw new IllegalArgumentException("Za duzo spacji");
+        }
+        bSpace = true;
+        continue;
+      }
+      if (!Character.isAlphabetic(c)) {
+        throw new IllegalArgumentException("Imie i nazwisko moze zawierac tylko litery");
+      }
+    }
+  }
+
   public List<WorkerResponse> findAllWorkers() {
     return workerRepository.findAll().stream().map(this::mapToWorkerResponse).toList();
   }
@@ -38,25 +55,9 @@ public class WorkerService {
   }
 
   private void validateRole(String role) {
-    if(!allRoles.contains(role)) {
+    if (!allRoles.contains(role)) {
       throw new IllegalArgumentException("zła rola pracownika");
 
-    }
-  }
-
-  private static void validateName(String name) {
-    boolean bSpace = false;
-    for (char c : name.toCharArray()) {
-      if (c == ' ') {
-        if (bSpace) {
-          throw new IllegalArgumentException("Za duzo spacji");
-        }
-        bSpace = true;
-        continue;
-      }
-      if (!Character.isAlphabetic(c)) {
-        throw new IllegalArgumentException("Imie i nazwisko moze zawierac tylko litery");
-      }
     }
   }
 
@@ -69,13 +70,13 @@ public class WorkerService {
 
   public WorkerResponse updateWorker(long id, WorkerPatch workerPatch) {
     Worker w1 = workerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Brak pracownika o wskazanym id"));
-    if (workerPatch.role()  != null) {
+    if (workerPatch.role() != null) {
       String role = workerPatch.role().trim();
       validateRole(role);
       w1.setRole(role);
     }
     if (workerPatch.name() != null) {
-      String name =  workerPatch.name().trim();
+      String name = workerPatch.name().trim();
       validateName(name);
       w1.setName(name);
     }
