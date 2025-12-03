@@ -13,6 +13,10 @@ import java.util.List;
 public class RoomService {
   private final RoomRepository roomRepository;
 
+  public static RoomResponse mapToRoomResponse(Room room) {
+    return new RoomResponse(room.getNumber(), room.getCapacity());
+  }
+
   public List<RoomResponse> findAllRooms() {
     return roomRepository.findAll().stream().map(RoomService::mapToRoomResponse).toList();
   }
@@ -20,10 +24,6 @@ public class RoomService {
   public RoomResponse findRoomById(int number) {
     Room room = roomRepository.findByNumber(number).orElseThrow(() -> new EntityNotFoundException("Brak tego pokoju"));
     return mapToRoomResponse(room);
-  }
-
-  public static RoomResponse mapToRoomResponse(Room room) {
-    return new RoomResponse(room.getNumber(), room.getCapacity());
   }
 
   public RoomResponse addRoom(@Valid RoomRequest roomRequest) {

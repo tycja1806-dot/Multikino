@@ -25,7 +25,7 @@ public class FilmService {
 
   public FilmResponse addFilm(@Valid FilmRequest filmRequest) {
     Film film = new Film();
-    film.setTitle(film.getTitle());
+    film.setTitle(filmRequest.title());
     film = filmRepository.save(film);
     return getFilmResponse(film);
   }

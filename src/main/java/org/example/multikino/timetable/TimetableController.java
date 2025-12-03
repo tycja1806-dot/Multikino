@@ -13,6 +13,7 @@ import java.util.List;
 
 public class TimetableController {
   private final TimetableService timetableService;
+
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
   public List<TimetableResponse> findAll() {

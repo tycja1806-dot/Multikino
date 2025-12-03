@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.example.multikino.films.Film;
 import org.example.multikino.rooms.Room;
 
-import java.sql.Date;
 import java.time.Instant;
 
 @Entity
