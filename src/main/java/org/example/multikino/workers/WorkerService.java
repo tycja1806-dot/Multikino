@@ -63,13 +63,13 @@ public class WorkerService {
 
   public void deleteWorker(long id) {
     if (!workerRepository.existsById(id)) {
-      throw new EntityNotFoundException("Brak pracownika o wskazanym id");
+      throw new EntityNotFoundException("Brak pracownika o wskazanym id" + id);
     }
     workerRepository.deleteById(id);
   }
 
   public WorkerResponse updateWorker(long id, WorkerPatch workerPatch) {
-    Worker w1 = workerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Brak pracownika o wskazanym id"));
+    Worker w1 = workerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Brak pracownika o wskazanym id" + id));
     if (workerPatch.role() != null) {
       String role = workerPatch.role().trim();
       validateRole(role);
