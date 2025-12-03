@@ -8,7 +8,6 @@ import org.example.multikino.rooms.Room;
 
 import java.time.Instant;
 
-
 @Entity
 @Data
 @NoArgsConstructor
