@@ -14,7 +14,7 @@ public class RoomService {
   private final RoomRepository roomRepository;
 
   public List<RoomResponse> findAllRooms() {
-    return roomRepository.findAll().stream().map(this::mapToRoomResponse).toList();
+    return roomRepository.findAll().stream().map(RoomService::mapToRoomResponse).toList();
   }
 
   public RoomResponse findRoomById(int number) {
@@ -22,7 +22,7 @@ public class RoomService {
     return mapToRoomResponse(room);
   }
 
-  private RoomResponse mapToRoomResponse(Room room) {
+  public static RoomResponse mapToRoomResponse(Room room) {
     return new RoomResponse(room.getNumber(), room.getCapacity());
   }
 

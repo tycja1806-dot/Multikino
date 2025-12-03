@@ -11,7 +11,7 @@ import java.util.List;
 public class FilmService {
   private final FilmRepository filmRepository;
 
-  private static FilmResponse getFilmResponse(Film film) {
+  public static FilmResponse getFilmResponse(Film film) {
     return new FilmResponse(film.getID(), film.getTitle());
   }
 
